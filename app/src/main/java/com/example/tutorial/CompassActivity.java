@@ -9,18 +9,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class CompassActivity extends AppCompatActivity implements SensorEventListener {
+    static final float ALPHA = 0.1f;
 
-    private ImageView mPointer;
+    private ImageView mRose;
+    private TextView mAngle2;
     private SensorManager mSensorManager;
-
     private Sensor mAccelerometer;
     private Sensor mMagnetometer;
     private float[] mLastAccelerometer = new float[3];
     private float[] mLastMagnetometer = new float[3];
-    private boolean mLastAccelerometerSet = false;
-    private boolean mLastMagnetometerSet = false;
     private float[] mR = new float[9];
     private float[] mOrientation = new float[3];
     private float mCurrentDegree = 0f;
@@ -32,19 +32,19 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mMagnetometer = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        mPointer = (ImageView) findViewById(R.id.pointer);
+        mRose = (ImageView) findViewById(R.id.rose);
+        mAngle2 = (TextView)findViewById(R.id.angle2);
+        mAngle2.setCursorVisible(false);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor == mAccelerometer) {
-            System.arraycopy(event.values, 0, mLastAccelerometer, 0, event.values.length);
-            mLastAccelerometerSet = true;
+            mLastAccelerometer = lowPass(event.values.clone(), mLastAccelerometer);
         } else if (event.sensor == mMagnetometer) {
-            System.arraycopy(event.values, 0, mLastMagnetometer, 0, event.values.length);
-            mLastMagnetometerSet = true;
+            mLastMagnetometer = lowPass(event.values.clone(), mLastMagnetometer);
         }
-        if (mLastAccelerometerSet && mLastMagnetometerSet) {
+        if (mLastAccelerometer!= null && mLastMagnetometer != null) {
             SensorManager.getRotationMatrix(mR, null, mLastAccelerometer, mLastMagnetometer);
             SensorManager.getOrientation(mR, mOrientation);
             float azimuthInRadians = mOrientation[0];
@@ -57,12 +57,22 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
                     0.5f);
 
             ra.setDuration(250);
-
             ra.setFillAfter(true);
 
-            mPointer.startAnimation(ra);
+            mRose.startAnimation(ra);
             mCurrentDegree = -azimuthInDegress;
+
+            float dispDegree = Math.round(-mCurrentDegree);
+            mAngle2.setText("Heading: " + Float.toString(dispDegree) + "°");
         }
+    }
+
+    protected float[] lowPass(float[] input, float[] output) {
+        if (output == null ) return input;
+        for ( int i=0; i<input.length; i++ ) {
+            output[i] = output[i] + ALPHA * (input[i] - output[i]);
+        }
+        return output;
     }
 
     @Override

@@ -22,8 +22,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CompassActivity"></activity
+            android:name=".CompassActivity"
+            android:screenOrientation="portrait"
             >
+        </activity>
     </application>
 
 </manifest>
