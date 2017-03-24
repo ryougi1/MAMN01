@@ -4,23 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tutorial.MainActivity">
+    tools:context="com.example.tutorial.CompassActivity">
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="256dp"
-        android:layout_height="110dp"
+    <ImageView
+        android:id="@+id/pointer"
+        android:layout_width="204dp"
+        android:layout_height="185dp"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="16dp"
-        android:onClick="bStart"
-        android:text="@string/button_start"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.497"
-        tools:layout_editor_absoluteY="289dp"
-        tools:text="@string/button_start" />
+        app:srcCompat="@drawable/pointer"
+        tools:layout_editor_absoluteY="132dp" />
 </android.support.constraint.ConstraintLayout>
