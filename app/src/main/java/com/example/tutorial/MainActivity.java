@@ -17,7 +17,12 @@ public class MainActivity extends AppCompatActivity{
     }
 
     /** Called when the user taps the Send button */
-    public void bStart(View view) {
+    public void startAcc(View view) {
+        Intent intent = new Intent(getApplicationContext(), AccelerometerActivity.class);
+        startActivity(intent);
+    }
+
+    public void startCompass(View view) {
         Intent intent = new Intent(getApplicationContext(), CompassActivity.class);
         startActivity(intent);
     }

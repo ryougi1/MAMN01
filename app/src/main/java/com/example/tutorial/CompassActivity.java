@@ -32,7 +32,7 @@ public class CompassActivity extends AppCompatActivity implements SensorEventLis
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mMagnetometer = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        mRose = (ImageView) findViewById(R.id.rose);
+        mRose = (ImageView) findViewById(R.id.compass_rose);
         mAngle2 = (TextView)findViewById(R.id.angle2);
         mAngle2.setCursorVisible(false);
     }

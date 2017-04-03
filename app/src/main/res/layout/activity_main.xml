@@ -4,23 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.tutorial.MainActivity">
+    tools:context="com.example.tutorial.MainActivity"
+    android:background="@drawable/bear_gr_edit2">
 
     <Button
         android:id="@+id/button1"
-        android:layout_width="256dp"
-        android:layout_height="110dp"
-        android:layout_marginBottom="16dp"
+        style="@android:style/Widget.Holo.Light.Button.Small"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:onClick="bStart"
-        android:text="@string/button_start"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="330dp"
+        android:onClick="startAcc"
+        android:text="@string/button_acc"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.497"
-        tools:layout_editor_absoluteY="289dp"
-        tools:text="@string/button_start" />
+        tools:text="@string/button_acc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button"
+        style="@android:style/Widget.Holo.Light.Button.Small"
+        android:layout_width="160dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:onClick="startCompass"
+        android:text="@string/button_compass"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="@string/button_compass"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="330dp"
+        app:layout_constraintVertical_bias="0.0" />
 </android.support.constraint.ConstraintLayout>

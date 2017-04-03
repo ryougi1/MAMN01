@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Tutorial</string>
-    <string name="button_start">START</string>
+    <string name="button_acc">Accelerometer</string>
+    <string name="button_compass">Compass</string>
     <string name="text_view">TEXT</string>
 </resources>
